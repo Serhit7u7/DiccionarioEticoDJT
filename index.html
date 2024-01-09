@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diccionario Ético | Serch DJT ༼ つ ◕_◕ ༽つ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Indie+Flower&family=Montserrat:wght@400&family=Open+Sans:wght@400&family=Roboto:wght@400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10">
+    <style>
+        /* Estilos para el menú de navegación desplegable */
+        .menu-responsive {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #fff;
+        }
+
+        .menu-desplegable {
+            display: none;
+            /* Agrega estilos para el menú desplegable según sea necesario */
+        }
+
+        /* Estilos CSS del diccionario ético ... */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #34495e;
+            color: #fff;
+        }
+
+        nav {
+            text-align: center;
+            background-color: #2c3e50;
+            padding: 10px;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #3498db;
+        }
+
+        header {
+            background-color: #2c3e50;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            margin-bottom: 40px;
+            position: relative;
+            margin-top: 40px;
+        }
+
+        h1 {
+            font-size: 5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.7);
+            font-family: 'Pacifico', cursive;
+            color: #3498db;
+        }
+
+        h2 {
+            font-size: 3em;
+            font-style: italic;
+            color: #e74c3c;
+            text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+            font-family: 'Indie Flower', cursive;
+        }
+
+        body {
+            margin-top: 40px;
+        }
+
+        h3,
+        h4 {
+            color: #3437db;
+            margin: 0;
+        }
+
+        form {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .campo {
+            padding: 15px;
+            font-size: 16px;
+            border: 1px solid #3498db;
+            border-radius: 5px;
+            margin-right: 10px;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            transition: background-color 0.3s ease;
+            font-family: 'Montserrat', sans-serif;
+            resize: none; /* Evitar que el textarea pueda redimensionarse por el usuario */
+        }
+
+        .campo:focus {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .boton {
+            padding: 15px 30px;
+            font-size: 16px;
+            background-color: #2ecc71;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            color: #fff;
+            transition: background-color 0.3s ease;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        .boton:hover {
+            background-color: #27ae60;
+        }
+
+        .resultado {
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 30px;
+            border-radius: 5px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            margin-bottom: 30px;
+            transition: background-color 0.3s ease;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        footer {
+            text-align: center;
+            color: #ecf0f1;
+            font-size: 14px;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 5px 0;
+            background-color: #2c3e50;
+        }
+
+        .swal2-title {
+            color: #716add;
+        }
+
+        .swal2-content {
+            color: #fff;
+        }
+
+        html,
+        body {
+            overflow-x: hidden;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Estilos para las secciones */
+        .seccion {
+            display: none;
+            padding: 30px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            margin-bottom: 30px;
+            transition: background-color 0.3s ease;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        /* Estilos para la sección de sugerencias */
+        #sugerencias {
+            text-align: center;
+        }
+
+        #sugerenciasGuardadas {
+            margin-top: 30px;
+        }
+
+        #sugerenciasGuardadas ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        #sugerenciasGuardadas li {
+            margin: 10px 0;
+            padding: 20px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var formularioBusqueda = document.getElementById('formularioBusqueda');
+            var inputBusqueda = document.getElementById('inputBusqueda');
+            var resultadoBusqueda = document.getElementById('resultadoBusqueda');
+            var enlaceDiccionario = document.getElementById('enlaceDiccionario');
+            var enlaceBusqueda = document.getElementById('enlaceBusqueda');
+            var enlaceSugerencias = document.getElementById('enlaceSugerencias');
+            var seccionDiccionario = document.getElementById('diccionario');
+            var seccionBusqueda = document.getElementById('busqueda');
+            var seccionSugerencias = document.getElementById('sugerencias');
+            var formularioSugerencias = document.getElementById('formularioSugerencias');
+    
+            enlaceDiccionario.addEventListener('click', function () {
+                seccionDiccionario.style.display = 'block';
+                seccionBusqueda.style.display = 'none';
+                seccionSugerencias.style.display = 'none';
+            });
+    
+            enlaceBusqueda.addEventListener('click', function () {
+                seccionDiccionario.style.display = 'none';
+                seccionBusqueda.style.display = 'block';
+                seccionSugerencias.style.display = 'none';
+            });
+    
+            enlaceSugerencias.addEventListener('click', function () {
+                seccionDiccionario.style.display = 'none';
+                seccionBusqueda.style.display = 'none';
+                seccionSugerencias.style.display = 'block';
+            });
+    
+            formularioBusqueda.addEventListener('submit', function (event) {
+                event.preventDefault();
+    
+                var busqueda = inputBusqueda.value.toLowerCase();
+    
+                var conceptoEncontrado = conceptos.find(function (concepto) {
+                    return concepto.termino.toLowerCase() === busqueda;
+                });
+    
+                if (conceptoEncontrado) {
+                    resultadoBusqueda.innerHTML = `
+                        <h3>${conceptoEncontrado.termino}</h3>
+                        <p>${conceptoEncontrado.definicion}</p>
+                    `;
+                    seccionBusqueda.style.display = 'block';
+                } else {
+                    resultadoBusqueda.innerHTML = `
+                        <p class="error">Concepto no encontrado. Inténtalo de nuevo con otro término.</p>
+                    `;
+                    seccionBusqueda.style.display = 'none';
+                }
+            });
+    
+            formularioSugerencias.addEventListener('submit', function (event) {
+                event.preventDefault();
+                var inputSugerencia = document.getElementById('inputSugerencia');
+                var sugerencia = inputSugerencia.value;
+    
+                // Puedes hacer algo con la sugerencia, como enviarla a un servidor o mostrar un mensaje de confirmación
+                Swal.fire({
+                    title: 'Sugerencia Enviada',
+                    text: '¡Gracias por tu sugerencia!',
+                    icon: 'success',
+                    width: 400,
+                    padding: '2em',
+                    background: '#fff url(/images/trees.png)',
+                });
+    
+                // Limpiar el campo de sugerencias después de enviar
+                inputSugerencia.value = '';
+    
+                // Mostrar las sugerencias almacenadas actualizadas
+                mostrarSugerenciasAlmacenadas();
+            });
+    
+            // Función para mostrar las sugerencias almacenadas
+            function mostrarSugerenciasAlmacenadas() {
+                var contenedorSugerencias = document.getElementById('sugerenciasGuardadas');
+                var sugerenciasGuardadas = JSON.parse(localStorage.getItem('sugerencias')) || [];
+    
+                // Limpiar el contenedor antes de mostrar las sugerencias
+                contenedorSugerencias.innerHTML = '';
+    
+                if (sugerenciasGuardadas.length > 0) {
+                    var listaSugerencias = document.createElement('ul');
+    
+                    sugerenciasGuardadas.forEach(function (sugerencia) {
+                        var elementoLista = document.createElement('li');
+                        elementoLista.textContent = sugerencia;
+                        listaSugerencias.appendChild(elementoLista);
+                    });
+    
+                    contenedorSugerencias.appendChild(listaSugerencias);
+                } else {
+                    // Opcional: Mostrar un mensaje si no hay sugerencias almacenadas
+                    contenedorSugerencias.textContent = 'No hay sugerencias almacenadas.';
+                }
+            }
+    
+            // Llamar a la función para mostrar sugerencias almacenadas al cargar la página
+            mostrarSugerenciasAlmacenadas();
+        });
+
+        var conceptos = [
+        { termino: "Ética", definicion: "Conjunto de principios morales que rigen la conducta de las personas en sociedad." },
+{ termino: "Moral", definicion: "Conjunto de normas y valores que orientan el comportamiento humano." },
+{ termino: "Responsabilidad", definicion: "Deber de cumplir con las obligaciones y compromisos adquiridos." },
+{ termino: "Integridad", definicion: "Honestidad y coherencia en la actuación, manteniendo principios éticos." },
+{ termino: "Honor", definicion: "Respeto y reconocimiento de la propia dignidad y la de los demás." },
+{ termino: "Plagio", definicion: "Copia no autorizada de trabajos o ideas de otros, violando la integridad académica." },
+{ termino: "Dilema", definicion: "Situación en la que se deben tomar decisiones difíciles desde el punto de vista ético." },
+{ termino: "Bioética", definicion: "Rama de la ética que aborda cuestiones éticas relacionadas con la biología y la medicina." },
+{ termino: "Taller", definicion: "Espacio de discusión y reflexión sobre los aspectos éticos en la práctica ingenieril." },
+{ termino: "Ingeniería", definicion: "Profesión que aplica principios científicos y éticos en el diseño y construcción de sistemas y productos." },
+{ termino: "Comité", definicion: "Órgano encargado de evaluar y supervisar cuestiones éticas en investigaciones y proyectos." },
+{ termino: "Justicia", definicion: "Principio ético que busca la equidad y la distribución justa de recursos y oportunidades." },
+{ termino: "Valores", definicion: "Principios fundamentales que guían el comportamiento ético de una persona o sociedad." },
+{ termino: "Conciencia", definicion: "Capacidad de percibir y reconocer la moralidad de los propios actos." },
+{ termino: "Transparencia", definicion: "Principio ético que implica actuar con claridad y honestidad, sin ocultar información." },
+{ termino: "Equidad", definicion: "Principio ético que busca la igualdad de oportunidades y trato justo para todos." },
+{ termino: "Normas", definicion: "Reglas establecidas que guían el comportamiento ético en una sociedad o grupo." },
+{ termino: "Global", definicion: "Perspectiva que considera las implicaciones éticas a nivel mundial." },
+{ termino: "Cultura", definicion: "Conjunto de valores, normas y tradiciones compartidas por una sociedad." },
+{ termino: "Educación", definicion: "Proceso de formación que incluye el desarrollo de valores éticos." },
+{ termino: "Laboral", definicion: "Relacionado con el ámbito del trabajo y el comportamiento ético en el entorno laboral." },
+{ termino: "Ciudadanía", definicion: "Ejercicio de derechos y deberes éticos dentro de una comunidad o sociedad." },
+{ termino: "Buenas", definicion: "Prácticas éticas que promueven el bienestar y el respeto en diversas situaciones." },
+{ termino: "Digital", definicion: "Ética relacionada con el uso responsable de la tecnología y la información digital." },
+{ termino: "Consecuencias", definicion: "Resultados o impactos éticos de una acción o decisión." },
+{ termino: "Evaluación", definicion: "Análisis ético de la efectividad y consecuencias de una acción o proyecto." },
+{ termino: "Deontología", definicion: "Énfasis en el deber y las obligaciones éticas asociadas con una profesión o campo." },
+{ termino: "Comunicación", definicion: "Prácticas éticas en la transmisión y recepción de información." },
+{ termino: "Organizacional", definicion: "Ética aplicada a la cultura y conducta ética dentro de una organización." },
+{ termino: "Virtud", definicion: "Cualidad ética positiva que se considera buena y deseable en una persona." },
+{ termino: "Pública", definicion: "Relacionado con el comportamiento ético en el ámbito gubernamental y servicios públicos." },
+{ termino: "Ciencia", definicion: "Ética en la investigación y aplicación de conocimientos científicos." },
+{ termino: "Información", definicion: "Ética en el manejo y difusión de datos e información." },
+{ termino: "Decisiones", definicion: "Proceso ético de tomar elecciones basadas en principios y valores." },
+{ termino: "Tecnología", definicion: "Ética relacionada con el desarrollo y uso responsable de la tecnología." },
+{ termino: "Sostenible", definicion: "Ética que considera la responsabilidad hacia las generaciones futuras y el medio ambiente." },
+{ termino: "Desarrollo", definicion: "Crecimiento ético y sostenible en aspectos social, económico y ambiental." },
+{ termino: "Social", definicion: "Ética centrada en la interacción y responsabilidad hacia la sociedad." },
+{ termino: "Conocimiento", definicion: "Ética en la búsqueda, adquisición y aplicación del conocimiento." },
+{ termino: "Filosofía", definicion: "Ética que explora las bases filosóficas de la moral y la conducta humana." },
+{ termino: "Estratégica", definicion: "Ética aplicada en la toma de decisiones estratégicas en diversas situaciones." },
+{ termino: "Liderazgo", definicion: "Ética relacionada con el ejercicio responsable y ético del liderazgo." },
+{ termino: "Gerencial", definicion: "Ética aplicada a la gestión y dirección de organizaciones y proyectos." },
+{ termino: "Emprendimiento", definicion: "Ética en la creación y gestión de nuevas empresas y proyectos." },
+{ termino: "Responsable", definicion: "Compromiso ético de asumir las consecuencias de las propias acciones." },
+{ termino: "Solidaridad", definicion: "Ética que promueve la colaboración y apoyo mutuo entre individuos y comunidades." },
+{ termino: "Inclusión", definicion: "Ética que fomenta la participación equitativa y respetuosa de todas las personas." },
+{ termino: "Civismo", definicion: "Ética relacionada con el comportamiento ciudadano y la participación en la sociedad." },
+{ termino: "Colaboración", definicion: "Práctica ética de trabajar juntos hacia un objetivo común." },
+{ termino: "Desempeño", definicion: "Ética aplicada al rendimiento laboral y la calidad en la ejecución de tareas." },
+{ termino: "Compromiso", definicion: "Obligación ética de cumplir con responsabilidades y promesas adquiridas." },
+{ termino: "Actitud", definicion: "Posición ética y mentalidad hacia situaciones y desafíos." },
+{ termino: "Colaborativa", definicion: "Ética que fomenta la cooperación y la creación conjunta." },
+{ termino: "Respeto", definicion: "Reconocimiento y consideración ética hacia la dignidad y derechos de los demás." },
+{ termino: "Honestidad", definicion: "Principio ético de actuar con verdad y sinceridad." },
+{ termino: "Compasión", definicion: "Sentimiento ético de empatía y comprensión hacia el sufrimiento de otros." },
+{ termino: "Empatía", definicion: "Capacidad de entender y compartir los sentimientos de los demás." },
+{ termino: "Igualdad", definicion: "Principio ético que busca la equidad y la justa distribución de recursos." },
+{ termino: "Virtuosidad", definicion: "Posesión y práctica de virtudes éticas consideradas excelentes." },
+{ termino: "Ecodesarrollo", definicion: "Desarrollo ético y sostenible que integra la protección del medio ambiente." },
+{ termino: "Intelectual", definicion: "Ética relacionada con el respeto a la propiedad intelectual y el conocimiento." },
+{ termino: "Reflexión", definicion: "Acto ético de pensar y considerar detenidamente situaciones y decisiones." },
+{ termino: "Autonomía", definicion: "Principio ético que enfatiza la libertad y la capacidad de toma de decisiones propia." },
+{ termino: "Racionalidad", definicion: "Ética basada en el uso lógico y razonado del pensamiento y la toma de decisiones." },
+{ termino: "Reflexiva", definicion: "Capacidad de considerar y analizar éticamente diversas perspectivas y situaciones." },
+{ termino: "Proactividad", definicion: "Actitud ética de anticiparse y tomar acciones positivas ante situaciones." },
+{ termino: "Sustentabilidad", definicion: "Ética centrada en el equilibrio entre las necesidades presentes y futuras del planeta." },
+{ termino: "Filantropía", definicion: "Ética de la acción altruista y el apoyo financiero a causas sociales." },
+{ termino: "Diálogo", definicion: "Práctica ética de comunicación abierta y respetuosa para resolver conflictos." },
+{ termino: "Participativo", definicion: "Ética que fomenta la participación activa y equitativa en procesos y decisiones." },
+{ termino: "Libertad", definicion: "Principio ético que defiende el derecho individual a la libertad y autonomía." },
+{ termino: "Coherencia", definicion: "Consistencia y alineación ética en pensamientos, palabras y acciones." },
+{ termino: "Equilibrio", definicion: "Principio ético que busca armonía y proporción en las decisiones y acciones." },
+{ termino: "Autoevaluación", definicion: "Análisis ético interno para evaluar y mejorar el propio desempeño y comportamiento." },
+{ termino: "Aprendizaje", definicion: "Proceso ético de adquirir conocimientos y experiencias para el crecimiento personal." },
+{ termino: "Competencia", definicion: "Ética aplicada al desarrollo y demostración de habilidades y conocimientos." },
+{ termino: "Juicio", definicion: "Capacidad ética de evaluar situaciones y tomar decisiones informadas." },
+{ termino: "Experiencia", definicion: "Acumulación de vivencias y aprendizajes que contribuyen al desarrollo ético." },
+{ termino: "Innovación", definicion: "Ética aplicada a la creación y aplicación de soluciones nuevas y efectivas." },
+{ termino: "Definición", definicion: "Explicación clara y precisa de un término o concepto ético." },
+{ termino: "Formación", definicion: "Desarrollo ético a través de la educación, el aprendizaje y la experiencia." },
+{ termino: "Ético", definicion: "Relacionado con los principios morales que guían la conducta humana." },
+{ termino: "Empresarial", definicion: "Ética aplicada al comportamiento ético en el ámbito empresarial." },
+{ termino: "Ambiental", definicion: "Ética relacionada con la responsabilidad hacia el medio ambiente." },
+{ termino: "Profesional", definicion: "Ética aplicada al comportamiento ético en el ejercicio de una profesión." },
+{ termino: "Crítica", definicion: "Análisis y evaluación ética detallada de una situación, idea o acción." },
+{ termino: "Razonamiento", definicion: "Ética basada en el pensamiento lógico y la toma de decisiones fundamentada." },
+{ termino: "Estratégica", definicion: "Ética aplicada a la planificación y toma de decisiones estratégicas." },
+{ termino: "Liderazgo", definicion: "Ética relacionada con el ejercicio responsable y ético del liderazgo." },
+{ termino: "Gerencial", definicion: "Ética aplicada a la gestión y dirección de organizaciones y proyectos." },
+{ termino: "Emprendimiento", definicion: "Ética en la creación y gestión de nuevas empresas y proyectos." },
+{ termino: "Responsable", definicion: "Compromiso ético de asumir las consecuencias de las propias acciones." },
+{ termino: "Solidaridad", definicion: "Ética que promueve la colaboración y apoyo mutuo entre individuos y comunidades." },
+            { termino: "Inclusión", definicion: "Ética que fomenta la participación equitativa y respetuosa"},
+            { termino: "Ética Profesional", definicion: "Principios éticos que guían la conducta en el ámbito laboral o profesional." },
+{ termino: "Responsabilidad Social", definicion: "Compromiso ético de las empresas con el bienestar social y ambiental." },
+{ termino: "Bioética Ambiental", definicion: "Ética que aborda cuestiones ambientales desde la perspectiva de la vida y la biología." },
+{ termino: "Código de Ética", definicion: "Documento que establece los principios éticos que deben seguir quienes lo adoptan." },
+{ termino: "Comité Ético", definicion: "Grupo encargado de evaluar y supervisar cuestiones éticas en investigaciones y proyectos." },
+{ termino: "Dilema Ético", definicion: "Situación en la que se deben tomar decisiones difíciles desde el punto de vista ético." },
+{ termino: "Ingeniería Ética", definicion: "Principios éticos aplicados al ejercicio de la ingeniería y la toma de decisiones." },
+{ termino: "Taller de Ética", definicion: "Espacio de discusión y reflexión sobre los aspectos éticos en la práctica ingenieril." },
+{ termino: "Ciudadanía Ética", definicion: "Compromiso de los ciudadanos con la práctica de principios éticos en la sociedad." },
+{ termino: "Valor Ético", definicion: "Principio o convicción que guía el comportamiento ético de una persona." },
+{ termino: "Conciencia Ética", definicion: "Capacidad de percibir y reconocer la moralidad de los propios actos." },
+{ termino: "Plagio Académico", definicion: "Copia no autorizada de trabajos o ideas de otros, violando la integridad académica." },
+{ termino: "Buenas Prácticas", definicion: "Normas éticas y profesionales que guían un comportamiento correcto en una disciplina." },
+{ termino: "Justicia Social", definicion: "Principio ético que busca la equidad y la distribución justa de recursos y oportunidades." },
+{ termino: "Ética Empresarial", definicion: "Principios éticos aplicados a la toma de decisiones y conducta en el entorno empresarial." },
+{ termino: "Ética Organizacional", definicion: "Principios éticos aplicados a la cultura y conducta ética dentro de una organización." },
+{ termino: "Decisiones Éticas", definicion: "Elecciones que una persona toma después de evaluar diferentes opciones desde un punto de vista ético." },
+{ termino: "Ética Laboral", definicion: "Principios éticos aplicados al comportamiento en el ámbito laboral." },
+{ termino: "Educación Ética", definicion: "Proceso de formación que incluye el desarrollo de valores y principios éticos." },
+{ termino: "Comunicación Ética", definicion: "Prácticas éticas en la transmisión y recepción de información." },
+{ termino: "Evaluación Ética", definicion: "Análisis ético de la efectividad y consecuencias de una acción o proyecto." },
+{ termino: "Deontología Profesional", definicion: "Énfasis en el deber y las obligaciones éticas asociadas con una profesión o campo." },
+{ termino: "Virtud Ética", definicion: "Cualidad ética positiva que se considera buena y deseable en una persona." },
+{ termino: "Filosofía Ética", definicion: "Estudio de las bases filosóficas de la moral y la conducta humana." },
+{ termino: "Liderazgo Ético", definicion: "Principios éticos aplicados al ejercicio del liderazgo de manera responsable." },
+{ termino: "Responsabilidad Ambiental", definicion: "Compromiso ético de cuidado y preservación del medio ambiente." },
+{ termino: "Innovación Ética", definicion: "Desarrollo y aplicación de soluciones novedosas de manera ética y responsable." },
+{ termino: "Desarrollo Sostenible", definicion: "Crecimiento ético y equitativo que considera la preservación de recursos." },
+{ termino: "Evaluación de Consecuencias", definicion: "Análisis ético de los resultados o impactos de una acción o decisión." },
+{ termino: "Desempeño Ético", definicion: "Actuación ética en el ámbito laboral u organizacional." },
+{ termino: "Participación Ciudadana", definicion: "Involucramiento activo y ético de los ciudadanos en asuntos de interés común." },
+{ termino: "Colaboración Ética", definicion: "Trabajo conjunto y ético para lograr objetivos compartidos." },
+{ termino: "Solidaridad Social", definicion: "Apoyo mutuo y cooperación ética entre individuos y comunidades." },
+{ termino: "Civismo Ético", definicion: "Comportamiento ético como ciudadano, contribuyendo al bien común y respetando normas sociales." },
+{ termino: "Integridad Profesional", definicion: "Mantenimiento de principios éticos y honestidad en el ejercicio de una profesión." },
+{ termino: "Equilibrio Ético", definicion: "Búsqueda de armonía y proporción en las decisiones y acciones desde un enfoque ético." },
+{ termino: "Ética Personal", definicion: "Principios y valores éticos aplicados a la conducta individual." },
+{ termino: "Toma Ética de Decisiones", definicion: "Proceso ético de elegir entre diferentes opciones basado en principios morales." },
+{ termino: "Ética Digital", definicion: "Principios éticos relacionados con el uso responsable y ético de la tecnología digital." },
+{ termino: "Inclusión Ética", definicion: "Promoción de la participación equitativa y respetuosa de todas las personas en la sociedad." },
+{ termino: "Libertad Ética", definicion: "Principio ético que defiende el derecho individual a la libertad y autonomía, guiado por valores morales." },
+{ termino: "Racionalidad Ética", definicion: "Uso lógico y razonado del pensamiento en la toma de decisiones éticas." },
+{ termino: "Reflexión Ética", definicion: "Análisis ético detenido y cuidadoso de situaciones y decisiones desde una perspectiva moral." },
+{ termino: "Proactividad Ética", definicion: "Actitud ética de anticiparse y tomar acciones positivas ante situaciones éticas." },
+{ termino: "Sustentabilidad Ética", definicion: "Compromiso ético con el equilibrio entre las necesidades presentes y futuras del planeta y sus habitantes." },
+{ termino: "Filantropía Ética", definicion: "Acciones altruistas y apoyo financiero a causas sociales de manera ética y responsable." },
+{ termino: "Diálogo Ético", definicion: "Comunicación abierta y respetuosa para abordar y resolver conflictos éticos." },
+{ termino: "Libertad Académica", definicion: "Principio ético que defiende la libertad de enseñanza, investigación y aprendizaje en entornos académicos." },
+{ termino: "Colaboración Académica", definicion: "Trabajo conjunto y ético entre individuos o instituciones en el ámbito académico." },
+{ termino: "Honestidad Académica", definicion: "Principio ético que implica la integridad intelectual y el respeto a la autoría en el ámbito académico." },
+{ termino: "Ética en Ingeniería", definicion: "Aplicación de principios éticos en la práctica de la ingeniería." },
+{ termino: "Taller de Ética", definicion: "Espacio de discusión y reflexión sobre aspectos éticos, especialmente en ingeniería." },
+{ termino: "Comité de Ética", definicion: "Grupo encargado de evaluar y supervisar cuestiones éticas en diversos contextos." },
+{ termino: "Bioética Ambiental", definicion: "Ética que aborda cuestiones ambientales desde la perspectiva de la vida y la biología." },
+{ termino: "Código de Ética", definicion: "Documento que establece los principios éticos que deben seguir quienes lo adoptan." },
+{ termino: "Plagio Académico", definicion: "Copia no autorizada de trabajos o ideas de otros, violando la integridad académica." },
+{ termino: "Responsabilidad Social", definicion: "Compromiso ético de las empresas con el bienestar social y ambiental." },
+{ termino: "Justicia Social", definicion: "Principio ético que busca la equidad y la distribución justa de recursos y oportunidades." },
+{ termino: "Ética Empresarial", definicion: "Principios éticos aplicados a la toma de decisiones y conducta en el entorno empresarial." },
+{ termino: "Ciudadanía Ética", definicion: "Compromiso de los ciudadanos con la práctica de principios éticos en la sociedad." },
+{ termino: "Educación Ética", definicion: "Proceso de formación que incluye el desarrollo de valores y principios éticos." },
+{ termino: "Innovación Ética", definicion: "Desarrollo y aplicación de soluciones novedosas de manera ética y responsable." },
+{ termino: "Desarrollo Sostenible", definicion: "Crecimiento ético y equitativo que considera la preservación de recursos." },
+{ termino: "Evaluación Ética de Consecuencias", definicion: "Análisis ético de los resultados o impactos de una acción o decisión." },
+{ termino: "Ética en la Toma de Decisiones", definicion: "Aplicación de principios éticos en el proceso de toma de decisiones." },
+{ termino: "Liderazgo Ético", definicion: "Principios éticos aplicados al ejercicio del liderazgo de manera responsable." },
+{ termino: "Responsabilidad Ambiental", definicion: "Compromiso ético de cuidado y preservación del medio ambiente." },
+{ termino: "Desempeño Ético Laboral", definicion: "Actuación ética en el ámbito laboral u organizacional." },
+{ termino: "Filosofía Ética Global", definicion: "Estudio de las bases filosóficas de la moral y la conducta humana a nivel mundial." },
+{ termino: "Colaboración Ética Ciudadana", definicion: "Trabajo conjunto y ético entre ciudadanos para lograr objetivos comunes." },
+{ termino: "Solidaridad Social", definicion: "Apoyo mutuo y cooperación ética entre individuos y comunidades." },
+{ termino: "Libertad Ética Académica", definicion: "Principio ético que defiende la libertad de enseñanza, investigación y aprendizaje en entornos académicos." },
+{ termino: "Razonamiento Ético Estratégico", definicion: "Pensamiento lógico y razonado aplicado a la toma de decisiones éticas en un contexto estratégico." },
+{ termino: "Proactividad Ética Organizacional", definicion: "Actitud ética de anticiparse y tomar acciones positivas en el ámbito organizacional." },
+{ termino: "Civismo Ético Empresarial", definicion: "Comportamiento ético como ciudadano empresarial, contribuyendo al bien común y respetando normas sociales." },
+{ termino: "Conciencia Ética Personal", definicion: "Capacidad de percibir y reconocer la moralidad de los propios actos a nivel individual." },
+{ termino: "Colaboración Académica Ética", definicion: "Trabajo conjunto y ético entre individuos o instituciones en el ámbito académico." },
+{ termino: "Diálogo Ético Ciudadano", definicion: "Comunicación abierta y respetuosa para abordar y resolver conflictos éticos en la sociedad." },
+{ termino: "Equilibrio Ético Ambiental", definicion: "Búsqueda de armonía y proporción ética en las decisiones y acciones relacionadas con el medio ambiente." },
+{ termino: "Inclusión Ética Social", definicion: "Promoción de la participación equitativa y respetuosa de todas las personas en la sociedad desde un enfoque ético." },
+{ termino: "Virtud Ética Profesional", definicion: "Cualidad ética positiva que se considera buena y deseable en el ámbito profesional." },
+{ termino: "Honestidad Académica Intelectual", definicion: "Principio ético que implica la integridad intelectual y el respeto a la autoría en el ámbito académico." },
+{ termino: "Reflexión Ética Estratégica", definicion: "Análisis ético detenido y cuidadoso de situaciones y decisiones desde una perspectiva moral en un contexto estratégico." },
+{ termino: "Autonomía Ética Individual", definicion: "Principio ético que enfatiza la libertad y la capacidad de toma de decisiones propia a nivel individual." },
+{ termino: "Ética de la Información", definicion: "Principios éticos aplicados al manejo y difusión de datos e información." },
+{ termino: "Sustentabilidad Ética Ambiental", definicion: "Compromiso ético con el equilibrio entre las necesidades presentes y futuras del planeta y sus habitantes, considerando el medio ambiente." },
+{ termino: "Competencia Ética Profesional", definicion: "Desarrollo y demostración ética de habilidades y conocimientos en el ámbito profesional." },
+{ termino: "Participación Ciudadana Ética", definicion: "Involucramiento activo y ético de los ciudadanos en asuntos de interés común, guiado por principios morales." },
+{ termino: "Normas Éticas Laborales", definicion: "Reglas éticas que rigen el comportamiento en el ámbito laboral." },
+{ termino: "Evaluación Ética del Desempeño", definicion: "Análisis ético de la efectividad y consecuencias de la actuación en el ámbito laboral u organizacional." },
+{ termino: "Buenas Prácticas Éticas", definicion: "Normas éticas y profesionales que guían un comportamiento correcto en diversas disciplinas." },
+{ termino: "Colaboración Ética Organizacional", definicion: "Trabajo conjunto y ético para lograr objetivos compartidos en el ámbito organizacional." },
+{ termino: "Ética Personal y Profesional", definicion: "Aplicación de principios éticos tanto en la vida personal como en el ámbito profesional." },
+{ termino: "Responsabilidad Ética Gerencial", definicion: "Obligación ética de los líderes de asumir las consecuencias de sus decisiones y acciones en el ámbito gerencial." },
+{ termino: "Decisiones Éticas Empresariales", definicion: "Elecciones en el entorno empresarial que se toman considerando principios éticos." },
+{ termino: "Razonamiento Ético Individual", definicion: "Proceso lógico y razonado aplicado a la toma de decisiones éticas a nivel individual." },
+{ termino: "Ética en la Ciencia", definicion: "Aplicación de principios éticos en la investigación científica y la práctica de la ciencia." },
+{ termino: "Deontología Profesional Ética", definicion: "Énfasis en el deber y las obligaciones éticas asociadas con una profesión o campo específico." },
+{ termino: "Compromiso Ético Social", definicion: "Obligación ética de contribuir al bienestar social y participar en iniciativas que promuevan el bien común." },
+{ termino: "Libertad Ética de Conciencia", definicion: "Derecho ético de seguir la propia conciencia y convicciones morales con libertad y autonomía." },
+{ termino: "Ingeniería", definicion: "Aplicación de conocimientos científicos y matemáticos para diseñar y construir soluciones tecnológicas." },
+{ termino: "Taller", definicion: "Espacio destinado a la práctica y reflexión sobre habilidades y conocimientos específicos." },
+{ termino: "Comité", definicion: "Grupo designado para abordar asuntos específicos, tomar decisiones o supervisar actividades." },
+{ termino: "Bioética", definicion: "Disciplina que examina los aspectos éticos de la vida y la biología, especialmente en medicina y biotecnología." },
+{ termino: "Código", definicion: "Conjunto de reglas o leyes que rigen el comportamiento o la conducta en un contexto particular." },
+{ termino: "Plagio", definicion: "Copia no autorizada o reproducción de ideas, palabras o trabajos de otros sin dar crédito." },
+{ termino: "Responsabilidad", definicion: "Obligación de cumplir con deberes y compromisos de manera ética y diligente." },
+{ termino: "Justicia", definicion: "Principio ético que busca la equidad y la distribución justa de recursos y oportunidades." },
+{ termino: "Empresarial", definicion: "Relacionado con las actividades y prácticas en el ámbito de los negocios y las empresas." },
+{ termino: "Ciudadanía", definicion: "Pertinencia y participación activa de los individuos en la sociedad, con derechos y deberes." },
+{ termino: "Educación", definicion: "Proceso de adquirir conocimientos, habilidades, valores y actitudes a través de la instrucción y el aprendizaje." },
+{ termino: "Innovación", definicion: "Introducción de novedades o mejoras en procesos, productos o servicios." },
+{ termino: "Desarrollo", definicion: "Proceso de crecimiento, cambio y mejora en diferentes aspectos, como social, económico o personal." },
+{ termino: "Evaluación", definicion: "Análisis y valoración de un objeto, situación o desempeño para tomar decisiones informadas." },
+{ termino: "Consecuencias", definicion: "Resultados o efectos que siguen a una acción, decisión o evento." },
+{ termino: "Toma de Decisiones", definicion: "Proceso de elegir entre diferentes opciones después de evaluarlas." },
+{ termino: "Liderazgo", definicion: "Habilidad para guiar, dirigir e influir en otros hacia el logro de metas comunes." },
+{ termino: "Ambiental", definicion: "Relacionado con el entorno y la preservación del medio ambiente." },
+{ termino: "Desempeño Laboral", definicion: "Actuación y rendimiento en el ámbito laboral u organizacional." },
+{ termino: "Filosofía", definicion: "Estudio de las ideas fundamentales sobre la existencia, el conocimiento, los valores y la realidad." },
+{ termino: "Global", definicion: "Relacionado con el mundo entero o que abarca múltiples culturas y regiones." },
+{ termino: "Colaboración", definicion: "Trabajo conjunto y cooperativo para lograr objetivos compartidos." },
+{ termino: "Solidaridad", definicion: "Apoyo mutuo y cooperación entre individuos o grupos en momentos de dificultad." },
+{ termino: "Libertad", definicion: "Estado de ser libre, sin restricciones o limitaciones indebidas." },
+{ termino: "Razonamiento", definicion: "Proceso lógico de pensar, comprender y llegar a conclusiones basadas en la información disponible." },
+{ termino: "Proactividad", definicion: "Actitud de anticiparse a situaciones y tomar acciones positivas para lograr objetivos." },
+{ termino: "Civismo", definicion: "Comportamiento ético y responsable como ciudadano, contribuyendo al bien común." },
+{ termino: "Conciencia", definicion: "Percepción y conocimiento de la realidad, especialmente en términos éticos." },
+{ termino: "Integridad", definicion: "Calidad de ser honesto y tener principios morales sólidos, incluso cuando nadie está observando." },
+{ termino: "Equilibrio", definicion: "Estado de armonía y proporción en diferentes aspectos, como decisiones o situaciones." },
+{ termino: "Personal", definicion: "Relacionado con el individuo, sus características y su comportamiento." },
+{ termino: "Toma de Decisiones", definicion: "Proceso de elegir entre diferentes opciones después de evaluarlas." },
+{ termino: "Digital", definicion: "Relacionado con la tecnología y la información en formato digital." },
+{ termino: "Competencia", definicion: "Habilidad y capacidad para realizar una tarea o alcanzar un objetivo de manera eficaz." },
+{ termino: "Juicio", definicion: "Capacidad para formar opiniones y tomar decisiones informadas y éticas." },
+{ termino: "Experiencia", definicion: "Conocimiento adquirido a través de la participación activa o la observación." },
+{ termino: "Innovación", definicion: "Introducción de novedades o mejoras en procesos, productos o servicios." },
+{ termino: "Definición", definicion: "Explicación clara y precisa de los límites o características de algo." },
+{ termino: "Formación", definicion: "Proceso de adquirir habilidades, conocimientos y valores a través de la instrucción y la práctica." },
+{ termino: "Empresarial", definicion: "Relacionado con el ámbito de los negocios y las empresas." },
+{ termino: "Ambiental", definicion: "Relacionado con el entorno y la preservación del medio ambiente." },
+{ termino: "Profesional", definicion: "Relacionado con una ocupación o actividad que requiere formación y habilidades especializadas." },
+{ termino: "Crítica", definicion: "Análisis detenido y evaluación de algo, con un enfoque constructivo." },
+{ termino: "Razonamiento", definicion: "Proceso lógico de pensar, comprender y llegar a conclusiones basadas en la información disponible." },
+{ termino: "Estratégica", definicion: "Relacionado con la planificación y ejecución de estrategias para alcanzar objetivos a largo plazo." },
+{ termino: "Liderazgo", definicion: "Habilidad para guiar, dirigir e influir en otros hacia el logro de metas comunes." },
+{ termino: "Gerencial", definicion: "Relacionado con la gestión y dirección de una organización o departamento." },
+{ termino: "Emprendimiento", definicion: "Acto de iniciar y desarrollar un nuevo proyecto o empresa, asumiendo riesgos." },
+{ termino: "Responsable", definicion: "Comprometido con el cumplimiento de deberes y obligaciones de manera ética y diligente." },
+{ termino: "Solidaridad", definicion: "Apoyo mutuo y cooperación entre individuos o grupos en momentos de dificultad." },
+{ termino: "Inclusión", definicion: "Acción de incluir o involucrar a todas las personas de manera equitativa." },
+{ termino: "Civismo", definicion: "Comportamiento ético y responsable como ciudadano, contribuyendo al bien común." },
+{ termino: "Colaboración", definicion: "Trabajo conjunto y cooperativo para lograr objetivos compartidos." },
+{ termino: "Desempeño", definicion: "Actuación y rendimiento en un rol específico, como laboral u organizacional." },
+{ termino: "Compromiso", definicion: "Obligación ética o promesa de cumplir con ciertas responsabilidades o acuerdos." },
+{ termino: "Actitud", definicion: "Postura mental y emocional hacia algo, influenciando el comportamiento." },
+{ termino: "Colaborativa", definicion: "Caracterizada por la cooperación y el trabajo conjunto para lograr objetivos comunes." },
+{ termino: "Respeto", definicion: "Consideración y reconocimiento de la dignidad y los derechos de los demás." },
+{ termino: "Honestidad", definicion: "Integridad y sinceridad en palabras, acciones y comportamiento." },
+{ termino: "Compasión", definicion: "Sentimiento de empatía y deseo de aliviar el sufrimiento de los demás." },
+{ termino: "Empatía", definicion: "Capacidad de entender y compartir los sentimientos de otra persona." },
+{ termino: "Igualdad", definicion: "Principio ético que aboga por la equidad y la justicia en el trato de todas las personas." },
+{ termino: "Virtuosidad", definicion: "Posesión y demostración de cualidades virtuosas o excelentes en el comportamiento." },
+{ termino: "Ecodesarrollo", definicion: "Desarrollo que busca la armonía entre el crecimiento económico y la preservación del medio ambiente." },
+{ termino: "Intelectual", definicion: "Relacionado con la capacidad mental, el conocimiento y el pensamiento crítico." },
+{ termino: "Reflexión", definicion: "Análisis profundo y cuidadoso de pensamientos, ideas o situaciones." },
+{ termino: "Autonomía", definicion: "Capacidad de tomar decisiones y actuar de manera independiente." },
+{ termino: "Racionalidad", definicion: "Uso lógico y razonado del pensamiento en la toma de decisiones." },
+{ termino: "Reflexiva", definicion: "Caracterizada por el análisis profundo y cuidadoso de situaciones o ideas." },
+{ termino: "Proactividad", definicion: "Actitud de anticiparse y tomar acciones positivas ante situaciones." },
+{ termino: "Sustentabilidad", definicion: "Prácticas y comportamientos que buscan el equilibrio entre las necesidades presentes y futuras." },
+{ termino: "Filantropía", definicion: "Acciones altruistas y apoyo financiero a causas sociales." },
+{ termino: "Diálogo", definicion: "Conversación abierta y respetuosa para abordar y resolver problemas." },
+{ termino: "Participativo", definicion: "Involucramiento activo y colaborativo en actividades o decisiones." },
+{ termino: "Libertad", definicion: "Estado de ser libre, sin restricciones o limitaciones indebidas." },
+{ termino: "Coherencia", definicion: "Consistencia y conformidad en pensamientos, palabras y acciones." },
+{ termino: "Equilibrio", definicion: "Estado de armonía y proporción en diferentes aspectos, como decisiones o situaciones." },
+{ termino: "Autoevaluación", definicion: "Análisis crítico y reflexivo de uno mismo para evaluar el propio desempeño o comportamiento." },
+{ termino: "Aprendizaje", definicion: "Adquisición de conocimientos, habilidades y actitudes a través de la experiencia y la instrucción." },
+{ termino: "Competencia", definicion: "Habilidad y capacidad para realizar una tarea o alcanzar un objetivo de manera eficaz." },
+{ termino: "Juicio", definicion: "Capacidad para formar opiniones y tomar decisiones informadas y éticas." },
+{ termino: "Experiencia", definicion: "Conocimiento adquirido a través de la participación activa o la observación." },
+{ termino: "Innovación", definicion: "Introducción de novedades o mejoras en procesos, productos o servicios." },
+{ termino: "Definición", definicion: "Explicación clara y precisa de los límites o características de algo." },
+{ termino: "Formación", definicion: "Proceso de adquirir habilidades, conocimientos y valores a través de la instrucción y la práctica." },
+{ termino: "Empresarial", definicion: "Relacionado con el ámbito de los negocios y las empresas." },
+{ termino: "Ambiental", definicion: "Relacionado con el entorno y la preservación del medio ambiente." },
+{ termino: "Profesional", definicion: "Relacionado con una ocupación o actividad que requiere formación y habilidades especializadas." },
+{ termino: "Crítica", definicion: "Análisis detenido y evaluación de algo, con un enfoque constructivo." },
+{ termino: "Razonamiento", definicion: "Proceso lógico de pensar, comprender y llegar a conclusiones basadas en la información disponible." },
+{ termino: "Estratégica", definicion: "Relacionado con la planificación y ejecución de estrategias para alcanzar objetivos a largo plazo." },
+{ termino: "Liderazgo", definicion: "Habilidad para guiar, dirigir e influir en otros hacia el logro de metas comunes." },
+{ termino: "Gerencial", definicion: "Relacionado con la gestión y dirección de una organización o departamento." },
+{ termino: "Emprendimiento", definicion: "Acto de iniciar y desarrollar un nuevo proyecto o empresa, asumiendo riesgos." },
+{ termino: "Responsable", definicion: "Comprometido con el cumplimiento de deberes y obligaciones de manera ética y diligente." },
+{ termino: "Solidaridad", definicion: "Apoyo mutuo y cooperación entre individuos o grupos en momentos de dificultad." },
+{ termino: "Inclusión", definicion: "Acción de incluir o involucrar a todas las personas de manera equitativa." },
+{ termino: "Civismo", definicion: "Comportamiento ético y responsable como ciudadano, contribuyendo al bien común." },
+{ termino: "Colaboración", definicion: "Trabajo conjunto y cooperativo para lograr objetivos compartidos." },
+{ termino: "Desempeño", definicion: "Actuación y rendimiento en un rol específico, como laboral u organizacional." },
+{ termino: "Compromiso", definicion: "Obligación ética o promesa de cumplir con ciertas responsabilidades o acuerdos." },
+{ termino: "Actitud", definicion: "Postura mental y emocional hacia algo, influenciando el comportamiento." },
+{ termino: "Colaborativa", definicion: "Caracterizada por la cooperación y el trabajo conjunto para lograr objetivos comunes." },
+{ termino: "Respeto", definicion: "Consideración y reconocimiento de la dignidad y los derechos de los demás." },
+{ termino: "Honestidad", definicion: "Integridad y sinceridad en palabras, acciones y comportamiento." },
+{ termino: "Compasión", definicion: "Sentimiento de empatía y deseo de aliviar el sufrimiento de los demás." },
+{ termino: "Empatía", definicion: "Capacidad de entender y compartir los sentimientos de otra persona." },
+{ termino: "Igualdad", definicion: "Principio ético que aboga por la equidad y la justicia en el trato de todas las personas." },
+{ termino: "Virtuosidad", definicion: "Posesión y demostración de cualidades virtuosas o excelentes en el comportamiento." },
+{ termino: "Ecodesarrollo", definicion: "Desarrollo que busca la armonía entre el crecimiento económico y la preservación del medio ambiente." },
+{ termino: "Intelectual", definicion: "Relacionado con la capacidad mental, el conocimiento y el pensamiento crítico." },
+{ termino: "Reflexión", definicion: "Análisis profundo y cuidadoso de pensamientos, ideas o situaciones." },
+{ termino: "Autonomía", definicion: "Capacidad de tomar decisiones y actuar de manera independiente." },
+{ termino: "Racionalidad", definicion: "Uso lógico y razonado del pensamiento en la toma de decisiones." },
+{ termino: "Reflexiva", definicion: "Caracterizada por el análisis profundo y cuidadoso de situaciones o ideas." },
+{ termino: "Proactividad", definicion: "Actitud de anticiparse y tomar acciones positivas ante situaciones." },
+{ termino: "Sustentabilidad", definicion: "Prácticas y comportamientos que buscan el equilibrio entre las necesidades presentes y futuras." },
+{ termino: "Filantropía", definicion: "Acciones altruistas y apoyo financiero a causas sociales." },
+{ termino: "Diálogo", definicion: "Conversación abierta y respetuosa para abordar y resolver problemas." },
+{ termino: "Participativo", definicion: "Involucramiento activo y colaborativo en actividades o decisiones." },
+{ termino: "Libertad", definicion: "Estado de ser libre, sin restricciones o limitaciones indebidas." },
+{ termino: "Coherencia", definicion: "Consistencia y conformidad en pensamientos, palabras y acciones." },
+{ termino: "Equilibrio", definicion: "Estado de armonía y proporción en diferentes aspectos, como decisiones o situaciones." },
+{ termino: "Autoevaluación", definicion: "Análisis crítico y reflexivo de uno mismo para evaluar el propio desempeño o comportamiento." },
+{ termino: "Aprendizaje", definicion: "Adquisición de conocimientos, habilidades y actitudes a través de la experiencia y la instrucción." },
+{ termino: "Competencia", definicion: "Habilidad y capacidad para realizar una tarea o alcanzar un objetivo de manera eficaz." },
+{ termino: "Juicio", definicion: "Capacidad para formar opiniones y tomar decisiones informadas y éticas." },
+{ termino: "Experiencia", definicion: "Conocimiento adquirido a través de la participación activa o la observación." },
+{ termino: "Innovación", definicion: "Introducción de novedades o mejoras en procesos, productos o servicios." },
+{ termino: "Definición", definicion: "Explicación clara y precisa de los límites o características de algo." },
+{ termino: "Formación", definicion: "Proceso de adquirir habilidades, conocimientos y valores a través de la instrucción y la práctica." },
+{ termino: "Empresarial", definicion: "Relacionado con el ámbito de los negocios y las empresas." },
+{ termino: "Ambiental", definicion: "Relacionado con el entorno y la preservación del medio ambiente." },
+{ termino: "Profesional", definicion: "Relacionado con una ocupación o actividad que requiere formación y habilidades especializadas." },
+{ termino: "Crítica", definicion: "Análisis detenido y evaluación de algo, con un enfoque constructivo." },
+{ termino: "Razonamiento", definicion: "Proceso lógico de pensar, comprender y llegar a conclusiones basadas en la información disponible." },
+{ termino: "Estratégica", definicion: "Relacionado con la planificación y ejecución de estrategias para alcanzar objetivos a largo plazo." },
+{ termino: "Liderazgo", definicion: "Habilidad para guiar, dirigir e influir en otros hacia el logro de metas comunes." },
+{ termino: "Gerencial", definicion: "Relacionado con la gestión y dirección de una organización o departamento." },
+{ termino: "Emprendimiento", definicion: "Acto de iniciar y desarrollar un nuevo proyecto o empresa, asumiendo riesgos." },
+{ termino: "Responsable", definicion: "Comprometido con el cumplimiento de deberes y obligaciones de manera ética y diligente." },
+{ termino: "Solidaridad", definicion: "Apoyo mutuo y cooperación entre individuos o grupos en momentos de dificultad." },
+{ termino: "Inclusión", definicion: "Acción de incluir o involucrar a todas las personas de manera equitativa." },
+{ termino: "Civismo", definicion: "Comportamiento ético y responsable como ciudadano, contribuyendo al bien común." },
+{ termino: "Colaboración", definicion: "Trabajo conjunto y cooperativo para lograr objetivos compartidos." },
+{ termino: "Desempeño", definicion: "Actuación y rendimiento en un rol específico, como laboral u organizacional." },
+{ termino: "Compromiso", definicion: "Obligación ética o promesa de cumplir con ciertas responsabilidades o acuerdos." },
+{ termino: "Actitud", definicion: "Postura mental y emocional hacia algo, influenciando el comportamiento." },
+{ termino: "Colaborativa", definicion: "Caracterizada por la cooperación y el trabajo conjunto para lograr objetivos comunes." },
+{ termino: "Respeto", definicion: "Consideración y reconocimiento de la dignidad y los derechos de los demás." },
+{ termino: "Honestidad", definicion: "Integridad y sinceridad en palabras, acciones y comportamiento." },
+{ termino: "Compasión", definicion: "Sentimiento de empatía y deseo de aliviar el sufrimiento de los demás." },
+{ termino: "Empatía", definicion: "Capacidad de entender y compartir los sentimientos de otra persona." },
+{ termino: "Igualdad", definicion: "Principio ético que aboga por la equidad y la justicia en el trato de todas las personas." },
+{ termino: "Virtuosidad", definicion: "Posesión y demostración de cualidades virtuosas o excelentes en el comportamiento." },
+{ termino: "Ecodesarrollo", definicion: "Desarrollo que busca la armonía entre el crecimiento económico y la preservación del medio ambiente." },
+{ termino: "Intelectual", definicion: "Relacionado con la capacidad mental, el conocimiento y el pensamiento crítico." },
+{ termino: "Reflexión", definicion: "Análisis profundo y cuidadoso de pensamientos, ideas o situaciones." },
+{ termino: "Autonomía", definicion: "Capacidad de tomar decisiones y actuar de manera independiente." },
+{ termino: "Racionalidad", definicion: "Uso lógico y razonado del pensamiento en la toma de decisiones." },
+{ termino: "Reflexiva", definicion: "Caracterizada por el análisis profundo y cuidadoso de situaciones o ideas." },
+{ termino: "Proactividad", definicion: "Actitud de anticiparse y tomar acciones positivas ante situaciones." },
+{ termino: "Sustentabilidad", definicion: "Prácticas y comportamientos que buscan el equilibrio entre las necesidades presentes y futuras." },
+{ termino: "Filantropía", definicion: "Acciones altruistas y apoyo financiero a causas sociales." },
+{ termino: "Diálogo", definicion: "Conversación abierta y respetuosa para abordar y resolver problemas." },
+{ termino: "Participativo", definicion: "Involucramiento activo y colaborativo en actividades o decisiones." },
+{ termino: "Libertad", definicion: "Estado de ser libre, sin restricciones o limitaciones indebidas." },
+{ termino: "Coherencia", definicion: "Consistencia y conformidad en pensamientos, palabras y acciones." },
+{ termino: "Equilibrio", definicion: "Estado de armonía y proporción en diferentes aspectos, como decisiones o situaciones." },
+{ termino: "Toma de Decisiones", definicion: "Proceso de elegir entre diferentes opciones para resolver una situación o alcanzar un objetivo." },
+{ termino: "Ciudadanía Responsable", definicion: "Práctica de derechos y deberes con integridad y compromiso en la sociedad." },
+{ termino: "Gestión Empresarial", definicion: "Administración eficaz de recursos y procesos en el ámbito empresarial." },
+{ termino: "Innovación Responsable", definicion: "Desarrollo de nuevas ideas, productos o procesos de manera ética y consciente." },
+{ termino: "Desempeño Ético", definicion: "Actuación coherente con principios morales y valores en diversas situaciones." },
+{ termino: "Participación Comunitaria", definicion: "Involucramiento activo de los ciudadanos en decisiones y procesos locales." },
+{ termino: "Colaboración Sostenible", definicion: "Trabajo conjunto basado en principios éticos para lograr objetivos comunes y sostenibles." },
+{ termino: "Solidaridad Social", definicion: "Apoyo mutuo y cooperación entre individuos para abordar desafíos en la sociedad." },
+{ termino: "Libertad Responsable", definicion: "Capacidad de actuar de manera ética sin comprometer la libertad de otros." },
+{ termino: "Razonamiento Ético", definicion: "Proceso lógico de reflexión y toma de decisiones fundamentado en valores éticos." },
+{ termino: "Proactividad Social", definicion: "Actitud anticipativa para abordar desafíos sociales y tomar medidas positivas." },
+{ termino: "Sustentabilidad Ambiental", definicion: "Prácticas y decisiones que buscan equilibrar el desarrollo con la preservación del medio ambiente." },
+{ termino: "Responsabilidad Corporativa", definicion: "Compromiso de las empresas con el bienestar social, ambiental y económico." },
+{ termino: "Desarrollo Inclusivo", definicion: "Progreso que involucra y beneficia a todos los segmentos de la sociedad de manera equitativa." },
+{ termino: "Ética Empresarial", definicion: "Conjunto de principios y valores que guían el comportamiento ético en el ámbito empresarial." },
+{ termino: "Innovación Ética", definicion: "Desarrollo de nuevas ideas, productos o procesos de manera ética y responsable." },
+{ termino: "Desempeño Ético", definicion: "Actuación coherente con principios morales y valores éticos en diversas situaciones." },
+{ termino: "Participación Ciudadana", definicion: "Involucramiento activo de los ciudadanos en decisiones y procesos que afectan a la comunidad." },
+{ termino: "Colaboración Ética", definicion: "Trabajo conjunto basado en principios éticos para lograr objetivos comunes." },
+{ termino: "Solidaridad Social", definicion: "Apoyo mutuo y cooperación entre individuos para abordar desafíos sociales." },
+{ termino: "Libertad Responsable", definicion: "Capacidad de actuar de acuerdo con principios éticos sin comprometer la libertad de otros." },
+{ termino: "Razonamiento Ético", definicion: "Proceso lógico de reflexión y toma de decisiones fundamentado en principios éticos." },
+{ termino: "Proactividad Ética", definicion: "Actitud anticipativa para abordar desafíos éticos y tomar medidas positivas." },
+{ termino: "Sustentabilidad Ética", definicion: "Prácticas y decisiones que buscan equilibrar el desarrollo con la preservación del medio ambiente." },
+{ termino: "Responsabilidad Corporativa", definicion: "Compromiso de las empresas con el bienestar social, ambiental y económico." },
+{ termino: "Desarrollo Inclusivo", definicion: "Progreso que involucra y beneficia a todos los segmentos de la sociedad de manera equitativa." },
+{ termino: "Toma de Decisiones", definicion: "Proceso de elegir entre diferentes opciones para resolver una situación o alcanzar un objetivo." },
+{ termino: "Compromiso Ciudadano", definicion: "Dedicación activa a responsabilidades y deberes en la comunidad." },
+{ termino: "Gestión Organizacional", definicion: "Administración eficaz de recursos y procesos en una entidad." },
+{ termino: "Innovación Sostenible", definicion: "Desarrollo de nuevas ideas, productos o procesos considerando la sostenibilidad." },
+{ termino: "Desempeño Laboral", definicion: "Actuación coherente con principios morales y valores en entornos de trabajo." },
+{ termino: "Participación Vecinal", definicion: "Involucramiento activo de los residentes en decisiones y asuntos locales." },
+{ termino: "Colaboración Ecológica", definicion: "Trabajo conjunto basado en principios éticos para lograr objetivos comunes y ecológicos." },
+{ termino: "Solidaridad Comunitaria", definicion: "Apoyo mutuo y cooperación entre miembros de una comunidad para abordar desafíos." },
+{ termino: "Libertad Responsable", definicion: "Capacidad de actuar de manera ética sin comprometer la libertad de otros." },
+{ termino: "Razonamiento Estratégico", definicion: "Proceso lógico de reflexión y toma de decisiones con enfoque estratégico." },
+{ termino: "Proactividad Social", definicion: "Actitud anticipativa para abordar desafíos sociales y tomar medidas positivas." },
+{ termino: "Conciencia Ambiental", definicion: "Conocimiento y consideración de la responsabilidad individual hacia el entorno." },
+{ termino: "Habilidad Colaborativa", definicion: "Capacidad para trabajar de manera efectiva en equipo hacia metas comunes." },
+{ termino: "Respeto Interpersonal", definicion: "Consideración y reconocimiento de la dignidad y derechos de los demás en las interacciones personales." },
+{ termino: "Inclusión Social", definicion: "Práctica de asegurar que todas las personas tengan acceso equitativo a oportunidades y recursos." },
+{ termino: "Transparencia Organizacional", definicion: "Apertura y claridad en las acciones y decisiones de una entidad u organización." },
+{ termino: "Adaptabilidad Laboral", definicion: "Capacidad para ajustarse y prosperar en entornos laborales cambiantes." },
+{ termino: "Equidad Educativa", definicion: "Principio de proporcionar igualdad de oportunidades y recursos en el ámbito educativo." },
+{ termino: "Innovación Tecnológica", definicion: "Desarrollo y aplicación de nuevas tecnologías para mejorar procesos y productos." },
+{ termino: "Responsabilidad Digital", definicion: "Compromiso ético y seguro en el uso de tecnologías de la información y comunicación." },
+{ termino: "Ética Profesional", definicion: "Principios y normas éticas aplicados en el ejercicio de una profesión." },
+{ termino: "Integridad Personal", definicion: "Mantenimiento de principios éticos y coherencia en el comportamiento individual." },
+{ termino: "Creatividad Emprendedora", definicion: "Generación de ideas originales y soluciones innovadoras en el contexto empresarial." },
+{ termino: "Pensamiento Crítico", definicion: "Habilidad de analizar, evaluar y formar juicios informados de manera reflexiva." },
+{ termino: "Conducta Cívica", definicion: "Comportamiento ético y responsable como miembro activo de la sociedad." },
+{ termino: "Equilibrio Personal", definicion: "Armonía y estabilidad en la vida individual, considerando aspectos físicos y emocionales." },
+{ termino: "Resiliencia Social", definicion: "Capacidad de adaptarse y recuperarse de adversidades en el contexto comunitario." },
+{ termino: "Diversidad Cultural", definicion: "Variabilidad y riqueza de distintas tradiciones y expresiones culturales en una sociedad." },
+{ termino: "Autoeficacia Laboral", definicion: "Creencia en la propia capacidad para realizar tareas y alcanzar metas en el ámbito laboral." },
+{ termino: "Compromiso Humanitario", definicion: "Dedicación activa a mejorar el bienestar y las condiciones de vida de la humanidad." },
+{ termino: "Responsabilidad Ambiental", definicion: "Compromiso con la preservación y protección del entorno natural y sus recursos." },
+{ termino: "Ética en la Ciencia", definicion: "Principios y normas éticas aplicados en la investigación y práctica científica." },
+{ termino: "Innovación Educativa", definicion: "Desarrollo de enfoques novedosos y efectivos en la enseñanza y el aprendizaje." },
+{ termino: "Colaboración Interdisciplinaria", definicion: "Trabajo conjunto entre diferentes disciplinas para abordar problemas complejos." },
+{ termino: "Código Ético", definicion: "Conjunto de principios y normas éticas aplicados en la programación y desarrollo de software." },
+{ termino: "Integridad del Código", definicion: "Mantenimiento de la coherencia, exactitud y confiabilidad en el código de programación." },
+{ termino: "Plagio de Código", definicion: "Copiar o utilizar código de manera no ética sin dar el debido crédito al autor original." },
+{ termino: "Seguridad Informática", definicion: "Aplicación de principios éticos para proteger sistemas y datos contra amenazas y ataques." },
+{ termino: "Privacidad de Datos", definicion: "Respeto y protección ética de la información personal recolectada y utilizada en programas." },
+{ termino: "Transparencia en el Software", definicion: "Práctica ética de proporcionar información clara y comprensible sobre el funcionamiento del software." },
+{ termino: "Accesibilidad en la Programación", definicion: "Inclusión de principios éticos para garantizar que el software sea accesible para todas las personas, independientemente de sus capacidades." },
+{ termino: "Desarrollo Sostenible en TIC", definicion: "Aplicación de principios éticos y sostenibles en el diseño y desarrollo de tecnologías de la información y comunicación." },
+{ termino: "Ética del Desarrollador", definicion: "Adherencia a principios éticos en todas las etapas del proceso de desarrollo de software." },
+{ termino: "Responsabilidad del Programador", definicion: "Compromiso ético del programador con la calidad, seguridad y ética en el código que produce." },
+{ termino: "Ética en la Inteligencia Artificial", definicion: "Consideración de aspectos éticos en el diseño, desarrollo y aplicación de sistemas de inteligencia artificial." },
+{ termino: "Innovación Ética en TIC", definicion: "Desarrollo de soluciones tecnológicas novedosas y éticas para abordar problemas y mejorar la sociedad." },
+{ termino: "Evaluación Ética del Software", definicion: "Análisis ético de las implicaciones y consecuencias del software en su entorno." },
+{ termino: "Inclusión Digital", definicion: "Práctica ética de garantizar el acceso y la participación equitativos en la era digital." },
+{ termino: "Ética en el Desarrollo Web", definicion: "Adherencia a principios éticos en la creación y mantenimiento de sitios web." },
+{ termino: "Diversidad en la Programación", definicion: "Promoción de un entorno inclusivo y diverso en la comunidad de programadores." },
+{ termino: "Ética en el Uso de Algoritmos", definicion: "Consideración de principios éticos al diseñar y aplicar algoritmos en sistemas informáticos." },
+{ termino: "Ética en la Programación Orientada a Objetos", definicion: "Principios éticos aplicados en el diseño y desarrollo de software utilizando paradigmas de programación orientada a objetos." },
+{ termino: "Honestidad en el Código", definicion: "Práctica ética de desarrollar código sin engaños, fraudes o intenciones maliciosas." },
+{ termino: "Calidad del Software", definicion: "Compromiso ético con la creación de software eficiente, fiable y que cumple con los requisitos establecidos." },
+{ termino: "Ética en la Recopilación de Datos", definicion: "Respeto a principios éticos al recopilar, almacenar y utilizar datos en aplicaciones y sistemas informáticos." },
+{ termino: "Sostenibilidad en la Tecnología", definicion: "Consideración de principios éticos para garantizar que las soluciones tecnológicas sean sostenibles a largo plazo." },
+{ termino: "Ética en el Desarrollo de Aplicaciones Móviles", definicion: "Adherencia a principios éticos en la creación de aplicaciones móviles para dispositivos." },
+{ termino: "Ética en la Programación Concurrente", definicion: "Principios éticos aplicados en el desarrollo de programas que ejecutan tareas simultáneas." },
+{ termino: "Ética en el Desarrollo de Videojuegos", definicion: "Consideración de principios éticos en la creación y diseño de videojuegos." },
+{ termino: "Ética en la Programación Funcional", definicion: "Principios éticos aplicados en el desarrollo de software utilizando paradigmas de programación funcional." },
+{ termino: "Ética en el Desarrollo de Software Libre", definicion: "Adherencia a principios éticos en la creación y distribución de software de código abierto." },
+{ termino: "Responsabilidad Social en TIC", definicion: "Compromiso ético de contribuir al bienestar social mediante soluciones y servicios basados en tecnologías de la información y comunicación." },
+{ termino: "Ética en la Computación Cuántica", definicion: "Consideración de principios éticos en el desarrollo y aplicación de la computación cuántica." },
+{ termino: "Ética en la Realidad Aumentada", definicion: "Adherencia a principios éticos en el diseño y uso de tecnologías de realidad aumentada." },
+{ termino: "Ética en la Realidad Virtual", definicion: "Consideración de principios éticos en el desarrollo y aplicación de tecnologías de realidad virtual." },
+{ termino: "Ética en la Inteligencia Artificial Explicable", definicion: "Principios éticos aplicados en la creación de sistemas de inteligencia artificial cuyas decisiones son comprensibles por humanos." },
+{ termino: "Seguridad Ética en la Información", definicion: "Práctica ética de garantizar la protección y privacidad de la información en sistemas informáticos." },
+{ termino: "Ética en la Ciencia de Datos", definicion: "Consideración de principios éticos en la recopilación, análisis y aplicación de datos en proyectos científicos." },
+{ termino: "Ética en el Desarrollo de Chatbots", definicion: "Adherencia a principios éticos en la creación y uso de asistentes virtuales con capacidad de conversación." },
+{ termino: "Ética en el Desarrollo de Software Embebido", definicion: "Principios éticos aplicados en la creación de software integrado en dispositivos y sistemas." },
+{ termino: "Ética en el Desarrollo de Sistemas de Control", definicion: "Consideración de principios éticos en el diseño y aplicación de sistemas de control automático." },
+{ termino: "Ética en el Desarrollo de Aplicaciones Web", definicion: "Adherencia a principios éticos en la creación y mantenimiento de aplicaciones web." },
+{ termino: "Ética en la Programación Lógica", definicion: "Principios éticos aplicados en el desarrollo de software utilizando lógica de programación." },
+{ termino: "Ética en el Desarrollo de Sistemas Distribuidos", definicion: "Consideración de principios éticos en la creación de sistemas que funcionan en entornos distribuidos." },
+{ termino: "Ética en el Diseño de Interfaz de Usuario", definicion: "Adherencia a principios éticos en la creación de interfaces de usuario intuitivas y accesibles." },
+{ termino: "Ética en el Desarrollo de Herramientas de Desarrollo", definicion: "Principios éticos aplicados en la creación de software y herramientas utilizadas en el desarrollo de otros programas." },
+{ termino: "Ética en la Programación Concurrente", definicion: "Consideración de principios éticos en el desarrollo de programas que ejecutan tareas simultáneas." },
+{ termino: "Ética en el Desarrollo de Sistemas Integrados", definicion: "Adherencia a principios éticos en la creación de sistemas que integran hardware y software." },
+{ termino: "Ética en el Desarrollo de Aplicaciones Móviles", definicion: "Consideración de principios éticos en la creación y diseño de aplicaciones para dispositivos móviles." },
+{ termino: "Ética en el Desarrollo de Sistemas Operativos", definicion: "Principios éticos aplicados en la creación y mantenimiento de sistemas operativos de computadoras." },
+{ termino: "Ética en el Desarrollo de Sistemas Empotrados", definicion: "Consideración de principios éticos en la creación de sistemas electrónicos embebidos." },
+{ termino: "Ética en el Desarrollo de Juegos Serios", definicion: "Adherencia a principios éticos en la creación de videojuegos educativos y de simulación." },
+{ termino: "Ética en el Desarrollo de Software de Entretenimiento", definicion: "Principios éticos aplicados en la creación de software de entretenimiento y videojuegos." },
+{ termino: "Ética en el Desarrollo de Aplicaciones de Redes Sociales", definicion: "Consideración de principios éticos en la creación de plataformas y aplicaciones para redes sociales." },
+{ termino: "Ética en la Computación en la Nube", definicion: "Adherencia a principios éticos en el diseño y uso de servicios de computación en la nube." },
+{ termino: "Ética en el Desarrollo de Sistemas de Información Geográfica", definicion: "Principios éticos aplicados en la creación de sistemas que manejan y analizan datos geográficos." },
+{ termino: "Ética en el Desarrollo de Aplicaciones de Inteligencia Artificial", definicion: "Consideración de principios éticos en la creación de aplicaciones que utilizan algoritmos de inteligencia artificial." },
+{ termino: "Ética en el Desarrollo de Sistemas de Información Empresarial", definicion: "Adherencia a principios éticos en el diseño y mantenimiento de sistemas que gestionan información empresarial." },
+{ termino: "Ética en el Desarrollo de Sistemas de Control de Versiones", definicion: "Principios éticos aplicados en la creación de herramientas y sistemas que gestionan versiones de código fuente." },
+{ termino: "Ética en el Desarrollo de Sistemas de Recomendación", definicion: "Consideración de principios éticos en la creación de sistemas que sugieren productos o contenido basado en preferencias del usuario." },
+{ termino: "Código Limpio", definicion: "Programación con estructuras claras y fácilmente comprensibles." },
+{ termino: "Privacidad Datos", definicion: "Respeto y protección de información personal en software." },
+{ termino: "Accesibilidad", definicion: "Garantizar uso equitativo del software para todas las personas." },
+{ termino: "Seguridad Software", definicion: "Protección contra amenazas y ataques informáticos." },
+{ termino: "Transparencia", definicion: "Proporcionar información clara sobre el funcionamiento del software." },
+{ termino: "Desarrollo Sostenible", definicion: "Creación de soluciones tecnológicas éticas y sostenibles." },
+{ termino: "Responsabilidad", definicion: "Compromiso con la calidad y ética en el desarrollo de software." },
+{ termino: "IA Ética", definicion: "Consideración ética en sistemas de inteligencia artificial." },
+{ termino: "Innovación TIC", definicion: "Desarrollo de soluciones tecnológicas novedosas." },
+{ termino: "Evaluación Software", definicion: "Análisis ético de implicaciones y consecuencias del software." },
+{ termino: "Inclusión Digital", definicion: "Garantizar acceso equitativo en la era digital." },
+{ termino: "Diversidad Programación", definicion: "Promover entorno inclusivo y diverso en programación." },
+{ termino: "Algoritmos Éticos", definicion: "Desarrollo y aplicación ética de algoritmos." },
+{ termino: "Desarrollo Web", definicion: "Creación y mantenimiento de sitios web." },
+{ termino: "Responsabilidad del Programador", definicion: "Compromiso ético con calidad y seguridad del código." },
+{ termino: "Innovación Tecnológica", definicion: "Desarrollo de tecnologías novedosas y éticas." },
+{ termino: "Ética Desarrollo Móvil", definicion: "Adherencia a principios éticos en apps móviles." },
+{ termino: "Seguridad Información", definicion: "Garantizar protección y privacidad de datos." },
+{ termino: "Privacidad Digital", definicion: "Respeto a la privacidad en entorno digital." },
+{ termino: "Calidad Software", definicion: "Compromiso ético con software eficiente y confiable." },
+{ termino: "Desarrollo Juegos Ético", definicion: "Consideración ética en diseño de videojuegos." },
+{ termino: "Desarrollo IA Explicable", definicion: "Aplicación ética en sistemas IA comprensibles." },
+{ termino: "Desarrollo App Web", definicion: "Adherencia ética en creación de aplicaciones web." },
+{ termino: "Integridad Código", definicion: "Mantenimiento de coherencia y exactitud en código." },
+{ termino: "Plagio Código", definicion: "Uso no ético de código sin dar crédito al autor." },
+{ termino: "Creatividad Emprendedora", definicion: "Generación de ideas innovadoras en programación." },
+{ termino: "Pensamiento Crítico", definicion: "Habilidad de análisis y evaluación reflexiva." },
+{ termino: "Conducta Cívica", definicion: "Comportamiento ético como miembro de la sociedad." },
+{ termino: "Equilibrio Personal", definicion: "Armonía y estabilidad en vida personal y laboral." },
+{ termino: "Resiliencia Social", definicion: "Adaptación y recuperación de adversidades sociales." },
+{ termino: "Autoeficacia Laboral", definicion: "Creencia en capacidad para tareas laborales." },
+{ termino: "Compromiso Humanitario", definicion: "Dedicación a mejorar bienestar y condiciones de vida." },
+{ termino: "Responsabilidad Ambiental", definicion: "Compromiso con preservación y protección del entorno." },
+{ termino: "Innovación Educativa", definicion: "Desarrollo de enfoques novedosos en educación." },
+{ termino: "Colaboración Interdisciplinaria", definicion: "Trabajo conjunto entre disciplinas diversas." },
+{ termino: "Ética en la Nube", definicion: "Adherencia a principios éticos en servicios en la nube." },
+{ termino: "Ética Datos", definicion: "Manejo ético de recopilación y uso de datos." },
+{ termino: "Ética en la Ciencia de Datos", definicion: "Consideración ética en análisis y aplicación de datos." },
+{ termino: "Ética en el Desarrollo de Chatbots", definicion: "Adherencia a principios éticos en creación de asistentes virtuales." },
+{ termino: "Ética Desarrollo Software Embebido", definicion: "Principios éticos en creación de software integrado." },
+{ termino: "Ética en el Desarrollo de Herramientas de Desarrollo", definicion: "Principios éticos en creación de herramientas para programadores." },
+{ termino: "Ética en el Desarrollo de Sistemas Integrados", definicion: "Consideración ética en creación de sistemas hardware y software integrados." },
+{ termino: "Ética en el Desarrollo de Sistemas de Control de Versiones", definicion: "Principios éticos en creación de sistemas que gestionan versiones de código fuente." },
+{ termino: "Ética en el Desarrollo de Sistemas de Recomendación", definicion: "Consideración ética en creación de sistemas que sugieren productos o contenido basado en preferencias del usuario." },
+            { termino: "Inteligencia Artificial", definicion: "La inteligencia artificial se refiere a la capacidad de las máquinas para realizar tareas que normalmente requieren inteligencia humana." },
+            { termino: "Desarrollo de Software", definicion: "El desarrollo de software es el proceso de creación y mantenimiento de aplicaciones informáticas mediante la escritura de código y la implementación de algoritmos." }
+            
+            // Agrega más conceptos según sea necesario
+        ];
+    </script>
+</head>
+
+<body>
+    <nav>
+        <a href="#" id="enlaceDiccionario">Diccionario</a>
+        <a href="#" id="enlaceBusqueda">Búsqueda</a>
+        <a href="#" id="enlaceSugerencias">Sugerencias</a>
+        <div class="menu-responsive">
+            <i class="fas fa-bars"></i>
+            <div class="menu-desplegable">
+                <a href="#" id="enlaceDiccionarioMobile">Diccionario</a>
+                <a href="#" id="enlaceBusquedaMobile">Búsqueda</a>
+                <a href="#" id="enlaceSugerenciasMobile">Sugerencias</a>
+            </div>
+        </div>
+    </nav>
+
+    <header>
+        <h1>Diccionario Ético</h1>
+        <h2>Proyecto para las asignaturas de Ética y Programación</h2>
+    </header>
+
+    <form id="formularioBusqueda">
+        <input type="text" id="inputBusqueda" class="campo" placeholder="Buscar término ético">
+        <button type="submit" class="boton">Buscar</button>
+    </form>
+
+    <div id="diccionario" class="seccion">
+        <h2>Diccionario Ético</h2>
+        <p>Bienvenido/a a mi diccionario ético. Aquí encontrarás definiciones de términos relacionados con las asignaturas de Taller de Ética y Fundamentos de Programación</p>
+        <h3>Ética en ingeniería</h3>
+        <p>Conjunto de principios y valores morales que guían el comportamiento responsable y reflexivo de los profesionales de la ingeniería. Implica la toma de decisiones éticas en el diseño, implementación y gestión de proyectos, considerando el impacto en la sociedad, el medio ambiente y otras partes interesadas, con el objetivo de asegurar la seguridad, equidad y bienestar general.</p>
+        <h3>Programación en ingeniería</h3>
+        <p>Proceso de desarrollo y diseño de software dentro del ámbito de la ingeniería. Incluye la creación, implementación y mantenimiento de algoritmos y códigos de programación para resolver problemas específicos en diversos campos ingenieriles. Este proceso implica la aplicación de principios lógicos y metodologías estructuradas para garantizar la eficiencia, la calidad y la fiabilidad del software resultante.</p>
+        <!-- Agrega más términos éticos y sus definiciones según sea necesario -->
+    </div>
+
+    <div id="busqueda" class="seccion">
+        <h2>Resultados de Búsqueda</h2>
+        <div id="resultadoBusqueda" class="resultado"></div>
+        <p>Aquí se mostrarán los resultados de tu búsqueda. Ingresa un término ético en el formulario de búsqueda para obtener información detallada.</p>
+    </div>
+
+    <div id="sugerencias" class="seccion">
+        <h2>Sugerencias y Comentarios</h2>
+        <p>¡Queremos escucharte! Si tienes sugerencias, comentarios o términos que te gustaría agregar al diccionario, no dudes en compartirlos con nosotros.</p>
+        <form id="formularioSugerencias">
+            <label for="inputSugerencia">Tu Sugerencia:</label>
+            <textarea id="inputSugerencia" class="campo" placeholder="Escribe tu sugerencia o comentario aquí"></textarea>
+            <button type="submit" class="boton">Enviar Sugerencia</button>
+        </form>
+    </div>
+
+    <footer>
+        <p>© 2024 Diccionario Ético | Serch DJT ༼ つ ◕_◕ ༽つ Todos los derechos reservados.</p>
+        <div class="redes-sociales">
+            <a href="https://www.facebook.com/SergioDeJesusV7/" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook"></i></a>
+            <a href="https://twitter.com/Serhit7u7" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i></a>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+</body>
+
+</html>
